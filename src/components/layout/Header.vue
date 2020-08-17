@@ -1,5 +1,5 @@
 <template>
-  <b-navbar class="is-primary">
+  <b-navbar class="is-info">
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
