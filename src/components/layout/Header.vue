@@ -4,7 +4,7 @@
       <b-navbar-item tag="div">
         <div class="buttons">
           <router-link :to="{name: 'Auth'}" class="button is-light">
-            Login
+            {{auth}}
           </router-link>
         </div>
       </b-navbar-item>
@@ -14,7 +14,29 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  props: {
+    isAuth: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      authDescription: {
+        signIn: 'Sign in',
+        signOut: 'Sign out'
+      }
+    }
+  },
+  computed: {
+    auth () {
+      if (this.isAuth) {
+        return this.authDescription.signOut
+      }
+      return this.authDescription.signIn
+    }
+  }
 }
 </script>
 

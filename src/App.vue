@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header
+      :isAuth="isAuth"
+    ></Header>
     <router-view class="pt-4"></router-view>
   </div>
 </template>
@@ -11,6 +13,11 @@ export default {
   name: 'App',
   components: {
     Header
+  },
+  data () {
+    return {
+      isAuth: false
+    }
   }
 }
 </script>
