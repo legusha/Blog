@@ -2,19 +2,19 @@
   <div class="container is-center">
     <section>
       <b-field
-        v-for="(field, index) in fields"
-        :key="index"
+        v-for="(field, fieldKey) in fields"
+        :key="fieldKey"
         :label="field.label"
-        :message="hasErrors(index, field)"
-        :type="{ 'is-danger': hasErrors(index, field).length > 0 }"
+        :message="hasErrors(fieldKey, field)"
+        :type="{ 'is-danger': hasErrors(fieldKey, field).length > 0 }"
       >
         <b-input
           v-model="field.value"
           :maxlength="field.maxLength"
-          @focus="focusField(index)"
+          @focus="fieldFocus(fieldKey)"
         ></b-input>
       </b-field>
-      <a class="button is-success is-right">
+      <a @click="authentication" class="button is-success is-right">
         Enter
       </a>
     </section>
@@ -22,13 +22,14 @@
 </template>
 
 <script>
+import { mapMutations, mapActions } from 'vuex'
 export default {
   name: 'Auth',
   data () {
     return {
       hasError: true,
-      fields: [
-        {
+      fields: {
+        login: {
           errors: [
             'Username is not available'
           ],
@@ -39,7 +40,7 @@ export default {
           type: 'text',
           value: ''
         },
-        {
+        password: {
           errors: [
             'Password must have at least 8 characters'
           ],
@@ -50,13 +51,16 @@ export default {
           type: 'password',
           value: ''
         }
-      ],
+      },
       fieldsOnceIndex: []
     }
   },
   methods: {
-    hasErrors (index, { errors, regExp, value }) {
-      const isOnceFocus = !this.fieldsOnceIndex.includes(index)
+    ...mapMutations(['setCurrentPassword']),
+    ...mapActions(['getUser']),
+
+    hasErrors (fieldKey, { errors, regExp, value }) {
+      const isOnceFocus = !this.fieldsOnceIndex.includes(fieldKey)
 
       if (isOnceFocus) return []
       return errors.filter(errorName => {
@@ -65,12 +69,15 @@ export default {
         }
       })
     },
-    focusField (index) {
+    fieldFocus (fieldKey) {
       const fieldsOnce = this.fieldsOnceIndex
-      const isHasIndex = fieldsOnce.includes(index)
+      const isHasIndex = fieldsOnce.includes(fieldKey)
 
       if (isHasIndex) return
-      fieldsOnce.push(index)
+      fieldsOnce.push(fieldKey)
+    },
+    authentication () {
+      // this.setCurrentPassword()
     }
   }
 }

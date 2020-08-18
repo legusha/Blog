@@ -14,10 +14,12 @@ const ApiWrap = function (instance, points, { log, description }) {
       log(logDescription.error(method), console.error)
       return
     }
+
     if (!this.isHasPoint(pointName)) {
       log(logDescription.error(pointName), console.error)
       return
     }
+
     return new Promise(async (resolve, reject) => {
       try {
         const url = points[pointName](...args)
