@@ -11,10 +11,15 @@
         <b-input
           v-model="field.value"
           :maxlength="field.maxLength"
+          :type="field.type"
           @focus="fieldFocus(fieldKey)"
         ></b-input>
       </b-field>
-      <a @click="authentication" class="button is-success is-right">
+      <a
+        @click="authentication"
+        :disabled="!isDataReady"
+        class="button is-success is-right"
+      >
         Enter
       </a>
     </section>
@@ -52,7 +57,17 @@ export default {
           value: ''
         }
       },
-      fieldsOnceIndex: []
+      fieldsKeys: [],
+      notCorrectCredentials: 'Your login or password is not correct, please check your credentials'
+    }
+  },
+  computed: {
+    isDataReady () {
+      if (this.fieldsKeys.length === 0) {
+        return false
+      }
+      return this.hasErrors('login', this.fields.login).length === 0 &&
+        this.hasErrors('password', this.fields.password).length === 0
     }
   },
   methods: {
@@ -60,7 +75,7 @@ export default {
     ...mapActions(['getUser']),
 
     hasErrors (fieldKey, { errors, regExp, value }) {
-      const isOnceFocus = !this.fieldsOnceIndex.includes(fieldKey)
+      const isOnceFocus = !this.fieldsKeys.includes(fieldKey)
 
       if (isOnceFocus) return []
       return errors.filter(errorName => {
@@ -70,14 +85,26 @@ export default {
       })
     },
     fieldFocus (fieldKey) {
-      const fieldsOnce = this.fieldsOnceIndex
+      const fieldsOnce = this.fieldsKeys
       const isHasIndex = fieldsOnce.includes(fieldKey)
 
       if (isHasIndex) return
       fieldsOnce.push(fieldKey)
     },
-    authentication () {
-      // this.setCurrentPassword()
+    async authentication () {
+      if (!this.isDataReady) return
+
+      const fields = this.fields
+      const login = fields.login.value
+      const password = fields.password.value
+
+      this.setCurrentPassword(password)
+      const user = await this.getUser(login)
+      if (user) {
+        await this.$router.push({ name: 'Posts' })
+        return
+      }
+      alert(this.notCorrectCredentials)
     }
   }
 }

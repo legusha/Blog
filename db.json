@@ -2,8 +2,8 @@
   "users": [
     {
       "id": 1,
-      "login": "writer@mail.com",
-      "password": 123456,
+      "login": "vlad@mail.com",
+      "password": "123!Dddddd",
       "role": "writer"
     },
     {
