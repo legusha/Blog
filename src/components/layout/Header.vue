@@ -3,9 +3,32 @@
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
-          <router-link :to="{name: 'Auth'}" class="button is-light">
-            {{auth}}
-          </router-link>
+          <button
+            v-if="showBtnPost"
+            @click="$emit('createPost')"
+            class="button is-success"
+          >
+            <span class="icon">
+              <i class="far fa-plus-square"></i>
+            </span>
+            <span>
+              Create post
+            </span>
+          </button>
+          <button
+            v-if="auth"
+            @click="authAction.signOut.handler"
+            class="button is-light"
+          >
+            {{authAction.signOut.text}}
+          </button>
+          <button
+            v-if="showBtnSignIn"
+            @click="authAction.signIn.handler"
+            class="button is-light"
+          >
+            {{authAction.signIn.text}}
+          </button>
         </div>
       </b-navbar-item>
     </template>
@@ -13,28 +36,47 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'Header',
   props: {
-    isAuth: {
+    auth: {
       type: Boolean,
       default: false
+    },
+    user: {
+      type: Object,
+      required: true
     }
   },
   data () {
     return {
-      authDescription: {
-        signIn: 'Sign in',
-        signOut: 'Sign out'
+      authAction: {
+        signIn: {
+          text: 'Sign in',
+          handler: this.goToAuthPage
+        },
+        signOut: {
+          text: 'Sign out',
+          handler: this.logout
+        }
       }
     }
   },
   computed: {
-    auth () {
-      if (this.isAuth) {
-        return this.authDescription.signOut
-      }
-      return this.authDescription.signIn
+    showBtnPost () {
+      const createPermission = this.user.permission.current.posts.create
+      return this.$route.name === 'Posts' && createPermission
+    },
+    showBtnSignIn () {
+      return !this.auth && this.$route.name !== 'Auth'
+    }
+  },
+  methods: {
+    ...mapMutations(['logout']),
+    goToAuthPage () {
+      if (this.$route.name === 'Auth') return
+      this.$router.push({ name: 'Auth' })
     }
   }
 }

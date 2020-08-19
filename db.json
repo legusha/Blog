@@ -9,18 +9,27 @@
     {
       "id": 2,
       "login": "reader@mail.com",
-      "password": 123456,
+      "password": "123!Aaaaaa",
       "role": "reader"
     }
   ],
   "posts": [
     {
       "id": 1,
-      "title": "Название поста",
-      "description": "Текст",
+      "title": "Lorem ipsum dolor sit amet",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque id nibh.",
       "claps": 0,
       "createdAt": "2019-09-29T00:00:00.000Z",
       "updateAt": "2019-09-29T00:00:00.000Z",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "Lorem ipsum dolor sit amet 2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque id nibh.",
+      "claps": 2,
+      "createdAt": "2019-06-19T00:00:00.000Z",
+      "updateAt": "2019-06-21T00:00:00.000Z",
       "userId": 1
     }
   ]
