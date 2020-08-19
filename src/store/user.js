@@ -1,19 +1,21 @@
 import PermissionFactory from '@/permission'
 import api from '@/api'
 
+const assess = process.env.VUE_APP_ASSESS
+
 const structUser = {
   id: 0,
   login: '',
   password: '',
   role: 'free',
-  permission: new PermissionFactory('dev').current
+  permission: new PermissionFactory(assess)
 }
 
 export default {
   state: {
     pointName: 'user',
     currentPassword: '',
-    auth: true,
+    auth: structUser.permission.currentAccess === 'dev',
     user: structUser
   },
   getters: {
@@ -25,7 +27,7 @@ export default {
       state.auth = true
       state.user = {
         ...user,
-        permission: new PermissionFactory(user.role).current
+        permission: new PermissionFactory(user.role)
       }
     },
     logout (state) {

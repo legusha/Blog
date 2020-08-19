@@ -1,4 +1,6 @@
-# analogue-medium
+# Analogue-medium
+
+###### This application has several assess such as "dev" and "free", depending on the selected assess, in UI the display of actions changes
 
 ## Project setup
 ```
@@ -10,9 +12,14 @@ npm install
 npm run server
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development assess
 ```
-npm run dev
+npm run serve:dev
+```
+
+### Compiles and hot-reloads for free assess
+```
+npm run serve:free
 ```
 
 ### Compiles and minifies for production

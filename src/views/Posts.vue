@@ -88,7 +88,7 @@ export default {
   computed: {
     ...mapGetters(['auth', 'user', 'posts']),
     permission () {
-      return this.user.permission.posts
+      return this.user.permission.current.posts
     }
   },
   methods: {

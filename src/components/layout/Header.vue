@@ -65,7 +65,7 @@ export default {
   },
   computed: {
     showBtnPost () {
-      const createPermission = this.user.permission.posts.create
+      const createPermission = this.user.permission.current.posts.create
       return this.$route.name === 'Posts' && createPermission
     },
     showBtnSignIn () {

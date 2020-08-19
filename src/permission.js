@@ -25,17 +25,24 @@ const permissionTypes = {
 }
 
 class Permission {
+  #currentAccess = ''
   #currentType = {}
+  #defaultAccess = 'free'
   #defaultType = {
     posts: {}
   }
 
-  constructor (permissionKey, permissionTypes) {
-    this.#currentType = permissionTypes[permissionKey] || this.#defaultType
+  constructor (permissionAccess = this.#defaultAccess, permissionTypes) {
+    this.#currentAccess = permissionAccess
+    this.#currentType = permissionTypes[permissionAccess] || this.#defaultType
   }
 
   get current () {
     return this.#currentType
+  }
+
+  get currentAccess () {
+    return this.#currentAccess
   }
 }
 

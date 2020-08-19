@@ -1,10 +1,11 @@
 {
   "name": "analogue-medium",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "server": "json-server --watch db.json",
-    "dev": "vue-cli-service serve",
+    "serve:dev": "vue-cli-service serve",
+    "serve:free": "vue-cli-service serve --mode free",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
