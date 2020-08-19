@@ -18,7 +18,7 @@
             {{authAction.signOut.text}}
           </button>
           <button
-            v-else
+            v-if="!auth && $route.name !== 'Auth'"
             @click="authAction.signIn.handler"
             class="button is-light"
           >
@@ -57,6 +57,7 @@ export default {
   methods: {
     ...mapMutations(['logout']),
     goToAuthPage () {
+      if (this.$route.name === 'Auth') return
       this.$router.push({ name: 'Auth' })
     }
   }
