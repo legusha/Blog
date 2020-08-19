@@ -1,19 +1,52 @@
 import api from '@/api'
+import { getTime } from '@/utils'
+
+const structPost = {
+  id: 0,
+  title: '',
+  description: '',
+  claps: 0,
+  createdAt: 0,
+  updateAt: 0,
+  userId: 0
+}
 
 export default {
   state: {
     posts: [],
+    currentPost: structPost,
     request: {
       methods: ['get', 'post', 'put', 'delete']
     }
   },
   getters: {
-    posts: state => state.posts
+    posts: state => state.posts,
+    currentPost: state => state.currentPost,
+    timePost: () => ({
+      createdAt: getTime()(),
+      updateAt: getTime()()
+    })
   },
   mutations: {
+    createPost (state, { data }) {
+      state.posts.unshift(data)
+      state.currentPost = structPost
+    },
     setPosts (state, { data }) {
       state.posts = data
+    },
+    updatePost (state, { data, index }) {
+      state.posts.splice(index, 1, data)
+      state.currentPost = structPost
+    },
+    deletePost (state, { index }) {
+      state.posts.splice(index, 1)
+      state.currentPost = structPost
+    },
+    setCurrentPost (state, partPost) {
+      state.currentPost = { ...state.currentPost, ...partPost }
     }
+
   },
   actions: {
     async makeRequestPost ({ state, commit }, { option, data = null, mutation = null }) {
@@ -21,7 +54,6 @@ export default {
 
       try {
         const hasMethod = state.request.methods.includes(method)
-
         if (!hasMethod) return
 
         const dataRequest = await api(method, { pointName, args }, data)

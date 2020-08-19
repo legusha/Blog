@@ -2,8 +2,8 @@
   <div class="container is-center">
     <section class="is-center">
       <div
-        v-for="post in posts"
-        :key="post.id"
+        v-for="(post, index) in posts"
+        :key="index"
         class="post-box box column is-6 m-auto mb-6">
         <article class="media">
           <div class="media-content">
@@ -21,21 +21,21 @@
               </div>
               <div v-if="auth" class="column is-8 has-text-right">
                 <div v-if="permission.like" class="is-inline-block">
-                  <a @click="clapPost(post)" class="button is-link is-light is-info is-medium" aria-label="like">
+                  <a @click="clapPost(post, index)" class="button is-link is-light is-info is-medium" aria-label="like">
                     <span class="icon is-small">
                       <i class="fas fa-hands-wash" aria-hidden="true"></i>
                     </span>
                     <span>{{post.claps}}</span>
                   </a>
                 </div>
-                <div v-if="permission.edit && permission.destroy" class="is-inline-block">
-                  <a class="button is-link is-light is-info is-inline-block is-medium" aria-label="like">
+                <div v-if="user.id === post.userId && permission.edit && permission.destroy" class="is-inline-block">
+                  <a @click="editPost(post)" class="button is-link is-light is-info is-inline-block is-medium" aria-label="like">
                     <span class="icon is-small">
                       <i class="far fa-edit" aria-hidden="true"></i>
                     </span>
                     <span>Изменить</span>
                   </a>
-                  <a @click="deletePost(post)" class="button is-link is-light is-info is-inline-block ml-3 is-medium" aria-label="like">
+                  <a @click="deletePost(post, index)" class="button is-link is-light is-info is-inline-block ml-3 is-medium" aria-label="like">
                     <span class="icon is-small">
                       <i class="far fa-trash-alt" aria-hidden="true"></i>
                     </span>
@@ -80,6 +80,10 @@ export default {
             method: 'delete',
             pointName: 'postId',
             args: []
+          },
+          mutation: {
+            name: 'deletePost',
+            args: {}
           }
         }
       }
@@ -101,20 +105,25 @@ export default {
 
       await this.makeRequestPost(this.request.setPost)
     },
-    async deletePost (post) {
+    editPost (post) {
       const id = post.id
-      this.request.deletePost.option.args = [id]
-      const indexPost = this.posts.findIndex(p => p.id === id)
+      this.$router.push({ name: 'Post-edit', params: { id } })
+    },
+    async deletePost (post, index) {
+      const id = post.id
+      const requestOption = this.request.deletePost.option
+      const requestMutation = this.request.deletePost.mutation
 
-      if (indexPost !== -1) {
-        this.posts.splice(indexPost, 1)
-      }
-
-      await this.makeRequestPost(this.request.deletePost)
+      requestOption.args = [id]
+      requestMutation.args = { index }
+      console.log({ option: requestOption, mutation: requestMutation })
+      await this.makeRequestPost({ option: requestOption, mutation: requestMutation })
     }
   },
   async mounted () {
-    await this.makeRequestPost(this.request.getPost)
+    if (this.posts.length === 0) {
+      await this.makeRequestPost(this.request.getPost)
+    }
   }
 }
 </script>

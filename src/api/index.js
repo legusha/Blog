@@ -1,13 +1,14 @@
 import axios from 'axios'
 import { config, endPoints } from './config'
-import logger from '@/utils/log'
+import { log } from '@/utils'
 
-const ApiWrap = function (instance, points, { log, description }) {
+const ApiWrap = function (instance, points, { run, description }) {
   this.api = instance
   this.endPoints = points
   this.isHasMethod = method => typeof this.api[method] === 'function'
   this.isHasPoint = point => typeof this.endPoints[point] === 'function'
   const logDescription = description
+  const log = run
 
   return (method, { pointName, args = [] }, dataRequest = null) => {
     if (!this.isHasMethod(method)) {
@@ -36,4 +37,4 @@ const ApiWrap = function (instance, points, { log, description }) {
   }
 }
 
-export default new ApiWrap(axios.create(config), endPoints, logger)
+export default new ApiWrap(axios.create(config), endPoints, log)
