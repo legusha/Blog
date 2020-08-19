@@ -6,7 +6,7 @@
     <b-field label="Description post">
       <b-input v-model="post.description" :maxlength="maxLengthDescription" type="textarea"></b-input>
     </b-field>
-    <b-button type="is-success is-light">{{actionText}}</b-button>
+    <b-button @click="$emit('action')" type="is-success">{{actionText}}</b-button>
   </div>
 </template>
 

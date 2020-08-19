@@ -17,13 +17,13 @@ const routes = [
     path: '/post/edit/:id',
     name: 'Post-edit',
     props: true,
-    component: () => import(/* webpackChunkName: "post-edit" */ '@/views/Post-edit')
+    component: () => import(/* webpackChunkName: "post-action" */ '@/views/Post-action')
   },
   {
     path: '/post/create/:id',
     name: 'Post-create',
     props: true,
-    component: () => import(/* webpackChunkName: "post-create" */ '@/views/Post-create')
+    component: () => import(/* webpackChunkName: "post-action" */ '@/views/Post-action')
   },
   {
     path: '/auth',
