@@ -23,6 +23,7 @@ export default {
   methods: {
     createPost () {
       console.log('create Post!')
+      this.$router.push({ name: 'Post-create', params: { id: 3 } })
     }
   }
 }

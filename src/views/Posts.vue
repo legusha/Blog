@@ -29,7 +29,7 @@
                   </a>
                 </div>
                 <div v-if="permission.edit && permission.destroy" class="is-inline-block">
-                  <a class="button is-link is-light is-info is-inline-block is-medium" aria-label="like">
+                  <a @click="editPost(post)" class="button is-link is-light is-info is-inline-block is-medium" aria-label="like">
                     <span class="icon is-small">
                       <i class="far fa-edit" aria-hidden="true"></i>
                     </span>
@@ -100,6 +100,10 @@ export default {
       this.request.setPost.option.args = [post.id]
 
       await this.makeRequestPost(this.request.setPost)
+    },
+    editPost (post) {
+      const id = post.id
+      this.$router.push({ name: 'Post-edit', params: { id } })
     },
     async deletePost (post) {
       const id = post.id

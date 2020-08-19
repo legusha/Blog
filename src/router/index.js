@@ -6,8 +6,24 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: '/posts'
+  },
+  {
+    path: '/posts',
     name: 'Posts',
     component: () => import(/* webpackChunkName: "posts" */ '@/views/Posts')
+  },
+  {
+    path: '/post/edit/:id',
+    name: 'Post-edit',
+    props: true,
+    component: () => import(/* webpackChunkName: "post-edit" */ '@/views/Post-edit')
+  },
+  {
+    path: '/post/create/:id',
+    name: 'Post-create',
+    props: true,
+    component: () => import(/* webpackChunkName: "post-create" */ '@/views/Post-create')
   },
   {
     path: '/auth',
