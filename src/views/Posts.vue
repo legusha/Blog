@@ -18,24 +18,24 @@
               </div>
               <div v-if="auth" class="column is-8 has-text-right">
                 <div v-if="permission.like" class="is-inline-block">
-                  <a class="button is-link is-light is-info" aria-label="like">
-                  <span class="icon is-small">
-                    <i class="fas fa-heart" aria-hidden="true"></i>
-                  </span>
+                  <a class="button is-link is-light is-info is-medium" aria-label="like">
+                    <span class="icon is-small">
+                      <i class="fas fa-hands-wash" aria-hidden="true"></i>
+                    </span>
                     <span>28</span>
                   </a>
                 </div>
                 <div v-if="permission.edit && permission.destroy" class="is-inline-block">
-                  <a class="button is-link is-light is-info is-inline-block" aria-label="like">
-                  <span class="icon is-small">
-                    <i class="fas fa-heart" aria-hidden="true"></i>
-                  </span>
+                  <a class="button is-link is-light is-info is-inline-block is-medium" aria-label="like">
+                    <span class="icon is-small">
+                      <i class="far fa-edit" aria-hidden="true"></i>
+                    </span>
                     <span>Изменить</span>
                   </a>
-                  <a class="button is-link is-light is-info is-inline-block ml-3" aria-label="like">
-                  <span class="icon is-small">
-                    <i class="fas fa-heart" aria-hidden="true"></i>
-                  </span>
+                  <a class="button is-link is-light is-info is-inline-block ml-3 is-medium" aria-label="like">
+                    <span class="icon is-small">
+                      <i class="far fa-trash-alt" aria-hidden="true"></i>
+                    </span>
                     <span>Удалить</span>
                   </a>
                 </div>

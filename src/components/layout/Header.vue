@@ -8,7 +8,12 @@
             @click="$emit('createPost')"
             class="button is-success"
           >
-            Create post
+            <span class="icon">
+              <i class="far fa-plus-square"></i>
+            </span>
+            <span>
+              Create post
+            </span>
           </button>
           <button
             v-if="auth"
