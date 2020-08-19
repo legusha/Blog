@@ -4,7 +4,7 @@
       <b-navbar-item tag="div">
         <div class="buttons">
           <button
-            v-if="$route.name === 'Posts'"
+            v-if="showBtnPost"
             @click="$emit('createPost')"
             class="button is-success"
           >
@@ -18,7 +18,7 @@
             {{authAction.signOut.text}}
           </button>
           <button
-            v-if="!auth && $route.name !== 'Auth'"
+            v-if="showBtnSignIn"
             @click="authAction.signIn.handler"
             class="button is-light"
           >
@@ -38,6 +38,10 @@ export default {
     auth: {
       type: Boolean,
       default: false
+    },
+    user: {
+      type: Object,
+      required: true
     }
   },
   data () {
@@ -52,6 +56,15 @@ export default {
           handler: this.logout
         }
       }
+    }
+  },
+  computed: {
+    showBtnPost () {
+      const createPermission = this.user.permission.posts.create
+      return this.$route.name === 'Posts' && createPermission
+    },
+    showBtnSignIn () {
+      return !this.auth && this.$route.name !== 'Auth'
     }
   },
   methods: {

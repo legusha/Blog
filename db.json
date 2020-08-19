@@ -9,7 +9,7 @@
     {
       "id": 2,
       "login": "reader@mail.com",
-      "password": 123456,
+      "password": "123!Aaaaaa",
       "role": "reader"
     }
   ],

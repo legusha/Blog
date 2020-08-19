@@ -2,6 +2,7 @@
   <div id="app">
     <Header
       :auth="auth"
+      :user="user"
       @createPost="createPost"
     ></Header>
     <router-view class="pt-4"></router-view>
@@ -17,7 +18,7 @@ export default {
     Header
   },
   computed: {
-    ...mapGetters(['auth'])
+    ...mapGetters(['auth', 'user'])
   },
   methods: {
     createPost () {

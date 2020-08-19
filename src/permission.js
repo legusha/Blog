@@ -3,7 +3,7 @@ class Permission {
   #typesPermission = {
     write: {
       posts: {
-        add: true,
+        create: true,
         edit: true,
         destroy: true
       }

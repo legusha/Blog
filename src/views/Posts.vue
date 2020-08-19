@@ -16,8 +16,8 @@
               <div class="column is-4">
                 <small>31m</small>
               </div>
-              <div class="column is-8 has-text-right">
-                <div class="is-inline-block">
+              <div v-if="auth" class="column is-8 has-text-right">
+                <div v-if="permission.like" class="is-inline-block">
                   <a class="button is-link is-light is-info" aria-label="like">
                   <span class="icon is-small">
                     <i class="fas fa-heart" aria-hidden="true"></i>
@@ -25,7 +25,7 @@
                     <span>28</span>
                   </a>
                 </div>
-                <div class="is-inline-block">
+                <div v-if="permission.edit && permission.destroy" class="is-inline-block">
                   <a class="button is-link is-light is-info is-inline-block" aria-label="like">
                   <span class="icon is-small">
                     <i class="fas fa-heart" aria-hidden="true"></i>
@@ -49,10 +49,14 @@
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'Posts',
-  components: {
+  computed: {
+    ...mapGetters(['auth', 'user']),
+    permission () {
+      return this.user.permission.posts
+    }
   }
 }
 </script>

@@ -6,7 +6,7 @@ const structUser = {
   login: '',
   password: '',
   role: 'free',
-  permission: new PermissionFactory('free')
+  permission: new PermissionFactory('free').current
 }
 
 export default {
@@ -25,7 +25,7 @@ export default {
       state.auth = true
       state.user = {
         ...user,
-        permission: new PermissionFactory(user.role)
+        permission: new PermissionFactory(user.role).current
       }
     },
     logout (state) {
