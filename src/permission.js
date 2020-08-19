@@ -1,29 +1,33 @@
-class Permission {
-  #currentPermission = {}
-  #typesPermission = {
-    write: {
-      posts: {
-        create: true,
-        edit: true,
-        destroy: true
-      }
-    },
-    read: {
-      posts: {
-        like: true
-      }
-    },
-    free: {
-      posts: {}
+const permissionTypes = {
+  write: {
+    posts: {
+      create: true,
+      edit: true,
+      destroy: true
     }
+  },
+  read: {
+    posts: {
+      like: true
+    }
+  },
+  free: {
+    posts: {}
+  }
+}
+
+class Permission {
+  #currentType = {}
+  #defaultType = {
+    posts: {}
   }
 
-  constructor (permissionKey = 'free') {
-    this.#currentPermission = this.#typesPermission[permissionKey] || this.#typesPermission.free
+  constructor (permissionKey, permissionTypes) {
+    this.#currentType = permissionTypes[permissionKey] || this.#defaultType
   }
 
   get current () {
-    return this.#currentPermission
+    return this.#currentType
   }
 }
 
@@ -35,6 +39,6 @@ export default class PermissionFactory {
       free: 'free'
     }
     const permissionKey = permissionType[type] || permissionType.free
-    return new Permission(permissionKey)
+    return new Permission(permissionKey, permissionTypes)
   }
 }
