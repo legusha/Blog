@@ -11,6 +11,7 @@ const defaultUser = {
 
 export default {
   state: {
+    pointName: 'user',
     currentPassword: '',
     user: defaultUser
   },
@@ -31,7 +32,8 @@ export default {
   actions: {
     async getUser ({ state, commit }, login) {
       try {
-        const data = await api('get', { pointName: 'user', args: [login] })
+        const pointName = state.pointName
+        const data = await api('get', { pointName, args: [login] })
         const user = data[0]
         const isCorrectPassword = state.currentPassword === user?.password
 
@@ -42,6 +44,7 @@ export default {
         return null
       } catch (e) {
         console.error(e)
+        return null
       }
     }
   }
