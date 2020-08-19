@@ -21,7 +21,6 @@ export default {
 
       try {
         const hasMethod = state.request.methods.includes(method)
-
         if (!hasMethod) return
 
         const dataRequest = await api(method, { pointName, args }, data)
