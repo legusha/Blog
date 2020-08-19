@@ -6,14 +6,14 @@ const structUser = {
   login: '',
   password: '',
   role: 'free',
-  permission: new PermissionFactory('free').current
+  permission: new PermissionFactory('dev').current
 }
 
 export default {
   state: {
     pointName: 'user',
     currentPassword: '',
-    auth: false,
+    auth: true,
     user: structUser
   },
   getters: {

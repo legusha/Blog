@@ -1,4 +1,12 @@
 const permissionTypes = {
+  dev: {
+    posts: {
+      create: true,
+      edit: true,
+      destroy: true,
+      like: true
+    }
+  },
   write: {
     posts: {
       create: true,
@@ -34,6 +42,7 @@ class Permission {
 export default class PermissionFactory {
   constructor (type) {
     const permissionType = {
+      dev: 'dev',
       writer: 'write',
       reader: 'read',
       free: 'free'

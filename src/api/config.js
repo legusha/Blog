@@ -8,7 +8,9 @@ const config = {
 
 // Endpoints must be in the type of functions
 const endPoints = {
-  user: email => `users?login=${email}`
+  user: email => `users?login=${email}`,
+  posts: () => 'posts',
+  postId: id => `posts/${id}`
 }
 
 export { config, endPoints }
