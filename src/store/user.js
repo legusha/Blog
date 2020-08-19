@@ -1,7 +1,7 @@
 import PermissionFactory from '@/permission'
 import api from '@/api'
 
-const defaultUser = {
+const structUser = {
   id: 0,
   login: '',
   password: '',
@@ -13,17 +13,24 @@ export default {
   state: {
     pointName: 'user',
     currentPassword: '',
-    user: defaultUser
+    auth: false,
+    user: structUser
   },
   getters: {
-    user: state => state.user
+    user: state => state.user,
+    auth: state => state.auth
   },
   mutations: {
-    updateUser (state, user) {
+    login (state, user) {
+      state.auth = true
       state.user = {
         ...user,
         permission: new PermissionFactory(user.role)
       }
+    },
+    logout (state) {
+      state.auth = false
+      state.user = structUser
     },
     setCurrentPassword (state, password) {
       state.currentPassword = password
@@ -38,7 +45,7 @@ export default {
         const isCorrectPassword = state.currentPassword === user?.password
 
         if (user && isCorrectPassword) {
-          commit('updateUser', user)
+          commit('login', user)
           return state.user
         }
         return null

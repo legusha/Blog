@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <Header
-      :isAuth="isAuth"
+      :auth="auth"
+      @createPost="createPost"
     ></Header>
     <router-view class="pt-4"></router-view>
   </div>
@@ -9,14 +10,18 @@
 
 <script>
 import Header from '@/components/layout/Header'
+import { mapGetters } from 'vuex'
 export default {
   name: 'App',
   components: {
     Header
   },
-  data () {
-    return {
-      isAuth: false
+  computed: {
+    ...mapGetters(['auth'])
+  },
+  methods: {
+    createPost () {
+      console.log('create Post!')
     }
   }
 }

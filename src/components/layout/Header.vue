@@ -3,9 +3,27 @@
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
-          <router-link :to="{name: 'Auth'}" class="button is-light">
-            {{auth}}
-          </router-link>
+          <button
+            v-if="$route.name === 'Posts'"
+            @click="$emit('createPost')"
+            class="button is-success"
+          >
+            Create post
+          </button>
+          <button
+            v-if="auth"
+            @click="authAction.signOut.handler"
+            class="button is-light"
+          >
+            {{authAction.signOut.text}}
+          </button>
+          <button
+            v-else
+            @click="authAction.signIn.handler"
+            class="button is-light"
+          >
+            {{authAction.signIn.text}}
+          </button>
         </div>
       </b-navbar-item>
     </template>
@@ -13,28 +31,33 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'Header',
   props: {
-    isAuth: {
+    auth: {
       type: Boolean,
       default: false
     }
   },
   data () {
     return {
-      authDescription: {
-        signIn: 'Sign in',
-        signOut: 'Sign out'
+      authAction: {
+        signIn: {
+          text: 'Sign in',
+          handler: this.goToAuthPage
+        },
+        signOut: {
+          text: 'Sign out',
+          handler: this.logout
+        }
       }
     }
   },
-  computed: {
-    auth () {
-      if (this.isAuth) {
-        return this.authDescription.signOut
-      }
-      return this.authDescription.signIn
+  methods: {
+    ...mapMutations(['logout']),
+    goToAuthPage () {
+      this.$router.push({ name: 'Auth' })
     }
   }
 }
