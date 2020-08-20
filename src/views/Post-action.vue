@@ -1,9 +1,9 @@
 <template>
   <div class="container is-center">
     <form-post
-      :action-text="currentForm.action.text"
+      :action-text="formCurrent.action.text"
       :post="currentPost"
-      @action="currentForm.action.handler"
+      @action="formCurrent.action.handler"
     ></form-post>
   </div>
 </template>
@@ -48,11 +48,11 @@ export default {
           }
         }
       },
-      currentForm: {}
+      formCurrent: {}
     }
   },
   computed: {
-    ...mapGetters(['posts', 'newPost', 'currentPost']),
+    ...mapGetters(['posts', 'currentPost']),
     id () {
       const radix = 10
       const id = this.$route.params.id
@@ -64,7 +64,7 @@ export default {
     ...mapMutations(['setCurrentPost']),
     async formActionEdit () {
       const data = this.currentPost
-      const option = this.currentForm.request
+      const option = this.formCurrent.request
       const id = this.id
 
       option.args = [id]
@@ -75,18 +75,21 @@ export default {
     },
     async formActionCreate () {
       const data = this.currentPost
-      const option = this.currentForm.request
+      const option = this.formCurrent.request
 
       await this.makeRequestPost({ option, data })
       await this.$router.push({ name: 'Posts' })
+    },
+    formCurrentAssign () {
+      if (this.$route.name === 'Post-edit') {
+        this.formCurrent = this.form.edit
+        return
+      }
+      this.formCurrent = this.form.create
     }
   },
   created () {
-    if (this.$route.name === 'Post-edit') {
-      this.currentForm = this.form.edit
-      return
-    }
-    this.currentForm = this.form.create
+    this.formCurrentAssign()
   }
 }
 </script>

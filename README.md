@@ -1,6 +1,10 @@
 # Analogue-medium
 
-###### This application has several assess such as "dev" and "free", depending on the selected assess, in UI the display of actions changes
+This application has several assess such as "dev" and "free", depending on the selected assess, in UI the display of actions changes.
+
+Conditions that are described below in tasks correspond to the mode "free".
+
+#####First you need to run json-server
 
 ## Project setup
 ```
