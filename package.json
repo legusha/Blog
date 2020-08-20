@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "private": true,
   "scripts": {
-    "server": "json-server --watch db.json",
+    "server": "json-server --no-delete-cascade --watch db.json",
     "serve:dev": "vue-cli-service serve --mode dev",
     "serve:free": "vue-cli-service serve --mode free",
     "build": "vue-cli-service build --mode prod",
