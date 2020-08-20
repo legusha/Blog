@@ -18,10 +18,37 @@
       "id": 1,
       "title": "Lorem ipsum dolor sit amet",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque id nibh.",
-      "claps": 3,
-      "createdAt": "2019-09-29T00:00:00.000Z",
-      "updateAt": "2019-09-29T00:00:00.000Z",
+      "claps": 4,
+      "createdAt": 1597870807666,
+      "updateAt": 1597870807666,
       "userId": 1
+    },
+    {
+      "id": 101,
+      "title": "new Posts",
+      "description": "new Posts",
+      "claps": 0,
+      "createdAt": 1597870807666,
+      "updateAt": 1597870807666,
+      "userId": 1
+    },
+    {
+      "id": 102,
+      "title": "new eadsa",
+      "description": "new eadsa",
+      "claps": 3,
+      "createdAt": 1597870807666,
+      "updateAt": 1597870807666,
+      "userId": 1
+    },
+    {
+      "id": 103,
+      "title": "",
+      "description": "",
+      "claps": 0,
+      "createdAt": 1597918270950,
+      "updateAt": 1597918270950,
+      "userId": 0
     }
   ]
 }

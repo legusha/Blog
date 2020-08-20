@@ -1,18 +1,50 @@
 import api from '@/api'
+import { getTime } from '@/utils'
+
+const structPost = {
+  id: 0,
+  title: '',
+  description: '',
+  claps: 0,
+  createdAt: 0,
+  updateAt: 0,
+  userId: 0
+}
 
 export default {
   state: {
     posts: [],
+    startIdPost: 100,
+    currentPost: structPost,
     request: {
       methods: ['get', 'post', 'put', 'delete']
     }
   },
   getters: {
-    posts: state => state.posts
+    posts: state => state.posts,
+    currentPost: state => state.currentPost,
+    newPost: state => {
+      const post = structPost
+      const id = state.currentPost.id ||
+        state.posts[state.posts.length - 1]?.id + 1 ||
+        state.startIdPost
+      return {
+        ...post,
+        id,
+        createdAt: getTime()(),
+        updateAt: getTime()()
+      }
+    }
   },
   mutations: {
     setPosts (state, { data }) {
       state.posts = data
+    },
+    setCurrentPost (state, partPost) {
+      state.currentPost = { ...state.currentPost, ...partPost }
+    },
+    setNewPost (state, post) {
+      state.posts.unshift(post)
     }
   },
   actions: {

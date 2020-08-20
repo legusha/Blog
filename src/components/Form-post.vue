@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-field label="Post name">
-      <b-input v-model="post.name"></b-input>
+      <b-input v-model="post.title"></b-input>
     </b-field>
     <b-field label="Description post">
       <b-input v-model="post.description" :maxlength="maxLengthDescription" type="textarea"></b-input>
@@ -17,7 +17,7 @@ export default {
     post: {
       type: Object,
       default: () => ({
-        name: '',
+        title: '',
         description: ''
       })
     },
@@ -33,7 +33,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

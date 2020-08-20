@@ -3,7 +3,7 @@
     <Header
       :auth="auth"
       :user="user"
-      @createPost="createPost"
+      @createPost="goToPostCreate"
     ></Header>
     <router-view class="pt-4"></router-view>
   </div>
@@ -21,8 +21,7 @@ export default {
     ...mapGetters(['auth', 'user'])
   },
   methods: {
-    createPost () {
-      console.log('create Post!')
+    goToPostCreate () {
       this.$router.push({ name: 'Post-create', params: { id: 3 } })
     }
   }
