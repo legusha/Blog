@@ -15,13 +15,31 @@
   ],
   "posts": [
     {
-      "title": "33333333333",
-      "description": "333333333",
-      "claps": 0,
-      "userId": 1,
+      "id": 3,
+      "title": "New post by user vlad@mail.com",
+      "description": "new post by user vlad@mail.com",
+      "claps": 3,
       "createdAt": 1597935542881,
       "updateAt": 1597935542881,
-      "id": 3
+      "userId": 1
+    },
+    {
+      "title": "New post by Dev user",
+      "description": "new post by user dev user",
+      "claps": 3,
+      "userId": 0,
+      "createdAt": 1597935542881,
+      "updateAt": 1597935542881,
+      "id": 4
+    },
+    {
+      "title": "new post 2 by user vlad@mail.com",
+      "description": "new post 2 by user vlad@mail.com",
+      "claps": 6,
+      "userId": 1,
+      "createdAt": 1597936533188,
+      "updateAt": 1597936533188,
+      "id": 5
     }
   ]
 }
