@@ -3,7 +3,7 @@
     <section class="is-center">
       <div
         v-for="(post, index) in posts"
-        :key="post.id"
+        :key="index"
         class="post-box box column is-6 m-auto mb-6">
         <article class="media">
           <div class="media-content">
@@ -117,7 +117,7 @@ export default {
 
       requestOption.args = [id]
       requestMutation.args = { index }
-
+      console.log({ option: requestOption, mutation: requestMutation })
       await this.makeRequestPost({ option: requestOption, mutation: requestMutation })
     }
   },

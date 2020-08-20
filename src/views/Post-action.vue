@@ -53,7 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['posts', 'currentPost', 'user']),
+    ...mapGetters(['posts', 'currentPost', 'user', 'newPost']),
     id () {
       const radix = 10
       const id = this.$route.params.id
@@ -84,7 +84,7 @@ export default {
       await this.$router.push({ name: 'Posts' })
     },
     async formActionCreate () {
-      const data = this.currentPost
+      const data = { ...this.newPost, ...this.currentPost }
       const optionRequest = this.formCurrent.request
       const optionMutation = optionRequest.mutation
 

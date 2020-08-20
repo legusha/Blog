@@ -38,16 +38,19 @@ export default {
   },
   mutations: {
     createPost (state, { data }) {
-      state.posts.unshift(data)
+      state.posts.push(data)
+      state.currentPost = structPost
     },
     setPosts (state, { data }) {
       state.posts = data
     },
     updatePost (state, { data, index }) {
       state.posts.splice(index, 1, data)
+      state.currentPost = structPost
     },
     deletePost (state, { index }) {
       state.posts.splice(index, 1)
+      state.currentPost = structPost
     },
     setCurrentPost (state, partPost) {
       state.currentPost = { ...state.currentPost, ...partPost }
