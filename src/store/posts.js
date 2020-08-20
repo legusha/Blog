@@ -14,7 +14,6 @@ const structPost = {
 export default {
   state: {
     posts: [],
-    startIdPost: 100,
     currentPost: structPost,
     request: {
       methods: ['get', 'post', 'put', 'delete']
@@ -23,22 +22,14 @@ export default {
   getters: {
     posts: state => state.posts,
     currentPost: state => state.currentPost,
-    newPost: state => {
-      const post = structPost
-      const id = state.currentPost.id ||
-        state.posts[state.posts.length - 1]?.id + 1 ||
-        state.startIdPost
-      return {
-        ...post,
-        id,
-        createdAt: getTime()(),
-        updateAt: getTime()()
-      }
-    }
+    timePost: () => ({
+      createdAt: getTime()(),
+      updateAt: getTime()()
+    })
   },
   mutations: {
     createPost (state, { data }) {
-      state.posts.push(data)
+      state.posts.unshift(data)
       state.currentPost = structPost
     },
     setPosts (state, { data }) {

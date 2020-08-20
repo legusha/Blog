@@ -17,8 +17,7 @@ export default {
     next({ name: 'Posts' })
   },
   postCreate (store, to, from, next) {
-    const defaultPost = store.getters.newPost
-    store.commit('setCurrentPost', defaultPost)
+    store.commit('setCurrentPost')
     next()
   }
 }

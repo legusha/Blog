@@ -13,5 +13,47 @@
       "role": "reader"
     }
   ],
-  "posts": []
+  "posts": [
+    {
+      "title": "111",
+      "description": "1111",
+      "claps": 0,
+      "userId": 0,
+      "id": 1
+    },
+    {
+      "title": "123123",
+      "description": "123123123123",
+      "claps": 0,
+      "userId": 0,
+      "id": 2
+    },
+    {
+      "id": 3,
+      "title": "123123",
+      "description": "Des",
+      "claps": 4,
+      "createdAt": 1597933526579,
+      "updateAt": 1597933526579,
+      "userId": 0
+    },
+    {
+      "id": 4,
+      "title": " new post 3",
+      "description": "new post 3",
+      "claps": 1,
+      "createdAt": 1597933701751,
+      "updateAt": 1597933701751,
+      "userId": 0
+    },
+    {
+      "id": 5,
+      "title": "new post 44",
+      "description": "4new post 4",
+      "claps": 0,
+      "createdAt": 1597933701751,
+      "updateAt": 1597933701751,
+      "userId": 0
+    }
+  ]
 }

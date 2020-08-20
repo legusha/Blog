@@ -28,7 +28,7 @@
                     <span>{{post.claps}}</span>
                   </a>
                 </div>
-                {{user.id === post.userId}}
+<!--                {{user.id === post.userId}}-->
                 <div v-if="permission.edit && permission.destroy" class="is-inline-block">
                   <a @click="editPost(post)" class="button is-link is-light is-info is-inline-block is-medium" aria-label="like">
                     <span class="icon is-small">
