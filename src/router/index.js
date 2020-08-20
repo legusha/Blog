@@ -23,7 +23,7 @@ const routes = [
     beforeEnter: middleware.postEdit.bind(middleware, store)
   },
   {
-    path: '/post/create/:id',
+    path: '/post/create',
     name: 'Post-create',
     props: true,
     component: () => import(/* webpackChunkName: "post-action" */ '@/views/Post-action'),

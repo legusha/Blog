@@ -74,11 +74,10 @@ export default {
       await this.$router.push({ name: 'Posts' })
     },
     async formActionCreate () {
-      const data = this.currentForm.post
+      const data = this.currentPost
       const option = this.currentForm.request
 
-      this.setCurrentPost(data)
-      await this.makeRequestPost({ option, data: this.newPost })
+      await this.makeRequestPost({ option, data })
       await this.$router.push({ name: 'Posts' })
     }
   },

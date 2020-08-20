@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     goToPostCreate () {
-      this.$router.push({ name: 'Post-create', params: { id: 3 } })
+      this.$router.push({ name: 'Post-create' })
     }
   }
 }

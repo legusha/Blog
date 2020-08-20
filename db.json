@@ -26,9 +26,9 @@
     },
     {
       "id": 101,
-      "title": "new Posts",
-      "description": "new Posts",
-      "claps": 0,
+      "title": "new Posts2222",
+      "description": "new Posts2222",
+      "claps": 4,
       "createdAt": 1597870807666,
       "updateAt": 1597870807666,
       "userId": 1
@@ -44,11 +44,20 @@
     },
     {
       "id": 103,
-      "title": "",
-      "description": "",
+      "title": "13123",
+      "description": "123123",
       "claps": 0,
-      "createdAt": 1597918270950,
-      "updateAt": 1597918270950,
+      "createdAt": 1597919758113,
+      "updateAt": 1597919758113,
+      "userId": 0
+    },
+    {
+      "id": 104,
+      "title": "Create post new 2222",
+      "description": "Create post 2223333\n",
+      "claps": 3,
+      "createdAt": 1597919817753,
+      "updateAt": 1597919817753,
       "userId": 0
     }
   ]
