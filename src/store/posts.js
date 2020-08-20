@@ -37,15 +37,22 @@ export default {
     }
   },
   mutations: {
+    createPost (state, { data }) {
+      state.posts.unshift(data)
+    },
     setPosts (state, { data }) {
       state.posts = data
     },
+    updatePost (state, { data, index }) {
+      state.posts.splice(index, 1, data)
+    },
+    deletePost (state, { index }) {
+      state.posts.splice(index, 1)
+    },
     setCurrentPost (state, partPost) {
       state.currentPost = { ...state.currentPost, ...partPost }
-    },
-    setNewPost (state, post) {
-      state.posts.unshift(post)
     }
+
   },
   actions: {
     async makeRequestPost ({ state, commit }, { option, data = null, mutation = null }) {

@@ -23,24 +23,6 @@
       "updateAt": 1597870807666,
       "userId": 1,
       "name": ""
-    },
-    {
-      "id": 101,
-      "title": "new Posts2222",
-      "description": "new Posts2222",
-      "claps": 4,
-      "createdAt": 1597870807666,
-      "updateAt": 1597870807666,
-      "userId": 1
-    },
-    {
-      "id": 102,
-      "title": "new eadsa",
-      "description": "new eadsa",
-      "claps": 3,
-      "createdAt": 1597870807666,
-      "updateAt": 1597870807666,
-      "userId": 1
     }
   ]
 }

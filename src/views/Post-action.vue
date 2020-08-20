@@ -10,7 +10,7 @@
 
 <script>
 import FormPost from '@/components/Form-post'
-import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Post-action',
@@ -30,7 +30,8 @@ export default {
             pointName: 'postId',
             args: [],
             mutation: {
-              name: 'setNewPost'
+              name: 'updatePost',
+              args: {}
             }
           }
         },
@@ -43,7 +44,7 @@ export default {
             method: 'post',
             pointName: 'posts',
             mutation: {
-              name: 'setNewPost'
+              name: 'createPost'
             }
           }
         }
@@ -52,11 +53,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['posts', 'currentPost']),
+    ...mapGetters(['posts', 'currentPost', 'user']),
     id () {
       const radix = 10
       const id = this.$route.params.id
       return parseInt(id, radix)
+    },
+    index () {
+      return this.posts.findIndex(post => post.id === this.id)
     }
   },
   methods: {
@@ -64,20 +68,33 @@ export default {
     ...mapMutations(['setCurrentPost']),
     async formActionEdit () {
       const data = this.currentPost
-      const option = this.formCurrent.request
+      const optionRequest = this.formCurrent.request
+      const optionMutation = optionRequest.mutation
       const id = this.id
 
-      option.args = [id]
+      optionRequest.args = [id]
+      optionMutation.args = { index: this.index }
 
       this.setCurrentPost({ ...data, id })
-      await this.makeRequestPost({ option, data })
+      await this.makeRequestPost({
+        data,
+        option: optionRequest,
+        mutation: optionMutation
+      })
       await this.$router.push({ name: 'Posts' })
     },
     async formActionCreate () {
       const data = this.currentPost
-      const option = this.formCurrent.request
+      const optionRequest = this.formCurrent.request
+      const optionMutation = optionRequest.mutation
 
-      await this.makeRequestPost({ option, data })
+      data.userId = this.user.id
+
+      await this.makeRequestPost({
+        data,
+        option: optionRequest,
+        mutation: optionMutation
+      })
       await this.$router.push({ name: 'Posts' })
     },
     formCurrentAssign () {
