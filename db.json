@@ -17,11 +17,12 @@
     {
       "id": 1,
       "title": "Lorem ipsum dolor sit amet",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque id nibh.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque id nibh.asdasdad",
       "claps": 4,
       "createdAt": 1597870807666,
       "updateAt": 1597870807666,
-      "userId": 1
+      "userId": 1,
+      "name": ""
     },
     {
       "id": 101,

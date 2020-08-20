@@ -11,6 +11,7 @@
 <script>
 import FormPost from '@/components/Form-post'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+
 export default {
   name: 'Post-action',
   components: {
@@ -61,14 +62,16 @@ export default {
   methods: {
     ...mapActions(['makeRequestPost']),
     ...mapMutations(['setCurrentPost']),
-    formActionEdit () {
-      const data = this.currentForm.post
+    async formActionEdit () {
+      const data = this.currentPost
       const option = this.currentForm.request
       const id = this.id
 
       option.args = [id]
 
       this.setCurrentPost({ ...data, id })
+      await this.makeRequestPost({ option, data })
+      await this.$router.push({ name: 'Posts' })
     },
     async formActionCreate () {
       const data = this.currentForm.post
