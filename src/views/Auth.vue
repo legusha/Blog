@@ -101,7 +101,7 @@ export default {
       this.setCurrentPassword(password)
       const user = await this.makeRequestUser(login)
       if (user) {
-        await this.$router.push({ name: 'Posts' })
+        await this.$router.push({ name: 'Posts', params: { page: '1' } })
         return
       }
       alert(this.notCorrectCredentials)

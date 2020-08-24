@@ -76,11 +76,12 @@ export default {
         if (!hasMethod) return
 
         const dataRequest = await api(method, { pointName, args }, data)
+        console.log(dataRequest)
 
         if (mutation !== null) {
-          commit(mutation.name, { data: dataRequest, ...mutation.args })
+          commit(mutation.name, { data: dataRequest.data, ...mutation.args })
         }
-        return dataRequest
+        return dataRequest.data
       } catch (e) {
         console.error(e)
         return null
