@@ -1,6 +1,9 @@
 export default {
   postEdit (store, to, from, next) {
+    const defaultCountPage = '1'
+    const defaultPostPage = { name: 'Posts', params: { page: defaultCountPage } }
     const isHasId = to.params?.id
+
     if (isHasId) {
       const radix = 10
       const id = parseInt(to.params.id, radix) || false // if not parse to integer,expected false instead NaN
@@ -11,10 +14,10 @@ export default {
         next()
         return
       }
-      next({ name: 'Posts' })
+      next(defaultPostPage)
       return
     }
-    next({ name: 'Posts' })
+    next(defaultPostPage)
   },
   postCreate (store, to, from, next) {
     store.commit('setCurrentPost')
