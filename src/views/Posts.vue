@@ -47,6 +47,17 @@
           </div>
         </article>
       </div>
+      <b-pagination
+        :current="pagination.currentPage"
+        :total="pagination.total"
+        :per-page="pagination.perPage"
+        :range-before="pagination.rangeBefore"
+        :range-after="pagination.rangeAfter"
+        :order="pagination.order"
+        :icon-pack="pagination.iconPack"
+        @change="paginationAction"
+      >
+      </b-pagination>
     </section>
   </div>
 </template>
@@ -61,7 +72,8 @@ export default {
         getPost: {
           option: {
             method: 'get',
-            pointName: 'posts'
+            pointName: 'posts',
+            args: []
           },
           mutation: {
             name: 'setPosts'
@@ -86,17 +98,39 @@ export default {
             args: {}
           }
         }
-      }
+      },
+      paginationCurrentPage: 1,
+      paginationMaxItems: 10
     }
   },
   computed: {
     ...mapGetters(['auth', 'user', 'posts']),
     permission () {
       return this.user.permission.current.posts
+    },
+    pagination () {
+      return {
+        total: this.posts.length,
+        currentPage: this.paginationCurrentPage,
+        perPage: this.paginationMaxItems,
+        rangeBefore: 0,
+        rangeAfter: 3,
+        order: 'is-centered',
+        iconPack: 'fas'
+      }
     }
   },
   methods: {
     ...mapActions(['makeRequestPost']),
+    async getPosts () {
+      const request = this.request.getPost
+      const page = this.paginationCurrentPage
+      const limit = this.paginationMaxItems
+
+      request.option.args = [page, limit]
+
+      await this.makeRequestPost(request)
+    },
     async clapPost (post) {
       post.claps = ++post.claps
 
@@ -116,13 +150,17 @@ export default {
 
       requestOption.args = [id]
       requestMutation.args = { index }
-      console.log({ option: requestOption, mutation: requestMutation })
+
       await this.makeRequestPost({ option: requestOption, mutation: requestMutation })
+    },
+    paginationAction (currentPage) {
+      this.paginationCurrentPage = currentPage
+      console.log(currentPage)
     }
   },
   async mounted () {
     if (this.posts.length === 0) {
-      await this.makeRequestPost(this.request.getPost)
+      await this.getPosts()
     }
   }
 }

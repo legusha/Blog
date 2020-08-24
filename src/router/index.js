@@ -12,7 +12,12 @@ const routes = [
   },
   {
     path: '/posts',
+    redirect: '/posts/1'
+  },
+  {
+    path: '/posts/:page',
     name: 'Posts',
+    props: true,
     component: () => import(/* webpackChunkName: "posts" */ '@/views/Posts')
   },
   {

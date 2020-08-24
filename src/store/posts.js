@@ -33,7 +33,7 @@ export default {
       state.currentPost = structPost
     },
     setPosts (state, { data }) {
-      state.posts = data
+      state.posts = [...state.posts, ...data]
     },
     updatePost (state, { data, index }) {
       state.posts.splice(index, 1, data)
