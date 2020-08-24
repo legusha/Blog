@@ -53,7 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['posts', 'currentPost', 'user', 'timePost']),
+    ...mapGetters(['posts', 'currentPost', 'user', 'timePost', 'currentPagePost']),
     id () {
       const radix = 10
       const id = this.$route.params.id
@@ -61,6 +61,9 @@ export default {
     },
     index () {
       return this.posts.findIndex(post => post.id === this.id)
+    },
+    currentPage () {
+      return this.currentPagePost.toString()
     }
   },
   methods: {
@@ -81,7 +84,7 @@ export default {
         option: optionRequest,
         mutation: optionMutation
       })
-      await this.$router.push({ name: 'Posts', params: { page: '1' } })
+      await this.$router.push({ name: 'Posts', params: { page: this.currentPage } })
     },
     async formActionCreate () {
       const currentPost = this.currentPost
@@ -102,7 +105,7 @@ export default {
         option: optionRequest,
         mutation: optionMutation
       })
-      await this.$router.push({ name: 'Posts', params: { page: '1' } })
+      await this.$router.push({ name: 'Posts', params: { page: this.currentPage } })
     },
     formCurrentAssign () {
       if (this.$route.name === 'Post-edit') {

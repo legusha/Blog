@@ -18,12 +18,14 @@ export default {
     currentPost: structPost,
     request: {
       methods: ['get', 'post', 'put', 'delete']
-    }
+    },
+    currentPage: 1
   },
   getters: {
     posts: state => state.posts,
     visiblePosts: state => state.visiblePosts,
     currentPost: state => state.currentPost,
+    currentPagePost: state => state.currentPage,
     timePost: () => ({
       createdAt: getTime()(),
       updateAt: getTime()()
@@ -46,10 +48,7 @@ export default {
       state.visiblePosts.splice(indexVisiblePost, 1)
       state.currentPost = structPost
     },
-    setCurrentPost (state, partPost) {
-      state.currentPost = { ...state.currentPost, ...partPost }
-    },
-    setPosts (state, { data }) {
+    writePosts (state, { data }) {
       const pushUniquePosts = postData => {
         const isUniquePost = post => post.id === postData.id
         const isHasPost = state.posts.some(isUniquePost)
@@ -60,6 +59,12 @@ export default {
 
       data.forEach(pushUniquePosts)
       state.visiblePosts = data
+    },
+    setCurrentPost (state, partPost) {
+      state.currentPost = { ...state.currentPost, ...partPost }
+    },
+    setCurrentPagePost (state, pageNumber = 1) {
+      state.currentPage = pageNumber
     }
   },
   actions: {
@@ -78,6 +83,7 @@ export default {
         return dataRequest
       } catch (e) {
         console.error(e)
+        return null
       }
     }
   }

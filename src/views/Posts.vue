@@ -58,7 +58,6 @@
         <b-pagination-button
           slot-scope="props"
           :page="props.page"
-          class="is-info"
         >
         </b-pagination-button>
       </b-pagination>
@@ -75,7 +74,7 @@ export default {
       const diffInMilliseconds = new Date().getTime() - value
       const days = 1000 * 60 * 60 * 24
       const result = Math.ceil(diffInMilliseconds / (days))
-      console.log(result)
+
       if (result === 1) {
         return 'Today'
       }
@@ -92,7 +91,7 @@ export default {
             args: []
           },
           mutation: {
-            name: 'setPosts'
+            name: 'writePosts'
           }
         },
         setPost: {
@@ -119,19 +118,18 @@ export default {
           }
         }
       },
-      paginationCurrentPage: 1,
       paginationMaxItems: 10
     }
   },
   computed: {
-    ...mapGetters(['auth', 'user', 'posts', 'visiblePosts']),
+    ...mapGetters(['auth', 'user', 'posts', 'visiblePosts', 'currentPagePost']),
     permission () {
       return this.user.permission.current.posts
     },
     pagination () {
       return {
         total: this.posts.length + 1,
-        currentPage: this.paginationCurrentPage,
+        currentPage: this.currentPagePost,
         perPage: this.paginationMaxItems,
         order: 'is-centered',
         iconPack: 'fas'
@@ -139,11 +137,11 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['clapPost']),
+    ...mapMutations(['clapPost', 'setCurrentPagePost']),
     ...mapActions(['makeRequestPost']),
     async getPosts () {
       const request = this.request.getPost
-      const page = this.paginationCurrentPage
+      const page = this.currentPagePost
       const limit = this.paginationMaxItems
 
       request.option.args = [page, limit]
@@ -184,7 +182,7 @@ export default {
       })
     },
     writeCurrentPage (page = 1) {
-      this.paginationCurrentPage = page
+      this.setCurrentPagePost(page)
       return this
     },
     async paginationAction (currentPage) {
