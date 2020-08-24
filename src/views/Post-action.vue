@@ -53,7 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['posts', 'currentPost', 'user', 'timePost']),
+    ...mapGetters(['posts', 'currentPost', 'user', 'timePost', 'currentPagePost']),
     id () {
       const radix = 10
       const id = this.$route.params.id
@@ -61,6 +61,9 @@ export default {
     },
     index () {
       return this.posts.findIndex(post => post.id === this.id)
+    },
+    currentPage () {
+      return this.currentPagePost.toString()
     }
   },
   methods: {
@@ -74,35 +77,40 @@ export default {
 
       optionRequest.args = [id]
       optionMutation.args = { index: this.index }
+      data.updateAt = this.timePost.updateAt()()
 
       this.setCurrentPost({ ...data, id })
       await this.makeRequestPost({
-        data,
+        dataRequest: data,
         option: optionRequest,
         mutation: optionMutation
       })
-      await this.$router.push({ name: 'Posts' })
+      await this.$router.push({ name: 'Posts', params: { page: this.currentPage } })
     },
     async formActionCreate () {
       const currentPost = this.currentPost
       const optionRequest = this.formCurrent.request
       const optionMutation = optionRequest.mutation
       const id = this.user.id
+      const time = {
+        createdAt: this.timePost.createdAt()(),
+        updateAt: this.timePost.updateAt()()
+      }
 
       const data = {
         title: currentPost.title,
         description: currentPost.description,
         claps: 0,
         userId: id,
-        ...this.timePost
+        ...time
       }
 
       await this.makeRequestPost({
-        data,
+        dataRequest: data,
         option: optionRequest,
         mutation: optionMutation
       })
-      await this.$router.push({ name: 'Posts' })
+      await this.$router.push({ name: 'Posts', params: { page: this.currentPage } })
     },
     formCurrentAssign () {
       if (this.$route.name === 'Post-edit') {

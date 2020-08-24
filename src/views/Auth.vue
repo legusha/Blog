@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     ...mapMutations(['setCurrentPassword']),
-    ...mapActions(['getUser']),
+    ...mapActions(['makeRequestUser']),
 
     hasErrors (fieldKey, { errors, regExp, value }) {
       const isOnceFocus = !this.fieldsKeys.includes(fieldKey)
@@ -99,9 +99,9 @@ export default {
       const password = fields.password.value
 
       this.setCurrentPassword(password)
-      const user = await this.getUser(login)
+      const user = await this.makeRequestUser(login)
       if (user) {
-        await this.$router.push({ name: 'Posts' })
+        await this.$router.push({ name: 'Posts', params: { page: '1' } })
         return
       }
       alert(this.notCorrectCredentials)

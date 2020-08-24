@@ -24,12 +24,13 @@ const ApiWrap = function (instance, points, { run, description }) {
     return new Promise(async (resolve, reject) => {
       try {
         const url = points[pointName](...args)
-        const { data } = await this.api[method](url, dataRequest)
+        const result = await this.api[method](url, dataRequest)
+        const { data } = result
 
         log(logDescription.request(url, method), console.log)
         log(logDescription.data(data), console.dir)
 
-        resolve(data)
+        resolve(result)
       } catch (e) {
         reject(e)
       }

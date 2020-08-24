@@ -17,29 +17,110 @@
     {
       "id": 3,
       "title": "New post by user vlad@mail.com",
-      "description": "new post by user vlad@mail.com",
-      "claps": 3,
+      "description": "new post by user edit test vlad@mail.com",
+      "claps": 9,
       "createdAt": 1597935542881,
       "updateAt": 1597935542881,
       "userId": 1
     },
     {
-      "title": "New post by Dev user",
-      "description": "new post by user dev user",
-      "claps": 3,
-      "userId": 0,
-      "createdAt": 1597935542881,
-      "updateAt": 1597935542881,
-      "id": 4
-    },
-    {
       "title": "new post 2 by user vlad@mail.com",
       "description": "new post 2 by user vlad@mail.com",
-      "claps": 6,
+      "claps": 8,
       "userId": 1,
       "createdAt": 1597936533188,
-      "updateAt": 1597936533188,
+      "updateAt": 1598311754713,
       "id": 5
+    },
+    {
+      "id": 6,
+      "title": "1 by user DEV",
+      "description": "",
+      "claps": 1,
+      "createdAt": 1598305572683,
+      "updateAt": 1598305572683,
+      "userId": 0
+    },
+    {
+      "id": 7,
+      "title": "2 by user DEV",
+      "description": "2",
+      "claps": 1,
+      "createdAt": 1598305572683,
+      "updateAt": 1598305572683,
+      "userId": 0
+    },
+    {
+      "id": 8,
+      "title": "3 by user DEV",
+      "description": "3",
+      "claps": 0,
+      "createdAt": 1598305572683,
+      "updateAt": 1598305572683,
+      "userId": 0
+    },
+    {
+      "id": 9,
+      "title": "4 by user DEV",
+      "description": "4",
+      "claps": 0,
+      "createdAt": 1598305572683,
+      "updateAt": 1598305572683,
+      "userId": 0
+    },
+    {
+      "id": 10,
+      "title": "5 by user DEV",
+      "description": "5",
+      "claps": 0,
+      "createdAt": 1598305572683,
+      "updateAt": 1598305572683,
+      "userId": 0
+    },
+    {
+      "id": 12,
+      "title": "7 by user DEV",
+      "description": "7",
+      "claps": 1,
+      "createdAt": 1598307412624,
+      "updateAt": 1598307412624,
+      "userId": 0
+    },
+    {
+      "id": 13,
+      "title": "8 by user DEV",
+      "description": "8",
+      "claps": 0,
+      "createdAt": 1598307412624,
+      "updateAt": 1598307412624,
+      "userId": 0
+    },
+    {
+      "title": "9 by user DEV",
+      "description": "9",
+      "claps": 0,
+      "userId": 0,
+      "createdAt": 1598308333094,
+      "updateAt": 1598308333094,
+      "id": 14
+    },
+    {
+      "id": 15,
+      "title": "10 by user DEV",
+      "description": "10 by user DEV",
+      "claps": 0,
+      "createdAt": 1598308333094,
+      "updateAt": 1598311895002,
+      "userId": 0
+    },
+    {
+      "title": "new post by user vlad@mail.com",
+      "description": "new post by user vlad@mail.com",
+      "claps": 0,
+      "userId": 1,
+      "createdAt": 1598308418202,
+      "updateAt": 1598308418202,
+      "id": 16
     }
   ]
 }

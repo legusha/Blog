@@ -8,7 +8,7 @@ Conditions that are described below in tasks correspond to the mode "free".
 
 * If remove post,all posts of the user are deleted. See [Json-server](https://github.com/typicode/json-server/pull/756). But this flag --no-delete-cascade not working.
 
-##### First you need to run json-server
+### First you need to run json-server
 
 ## Project setup
 ```
@@ -35,13 +35,17 @@ npm run serve:free
 npm run build
 ```
 
+### Compiles and minifies for production and run static server
+```
+npm run build:run
+```
+
 ### Lints and fixes files
 ```
 npm run lint
 ```
 
 ### Task description
-```
 Тестовое задание “Аналог Medium”.
 Аутентификация.
 Реализовать прототип аутентификации используя логин и пароль из базы данных.
@@ -49,11 +53,17 @@ npm run lint
 Форма аутентификации должна валидироваться перед отправкой запроса. Для прототипа логин производится на фронте, подразумевается что Вы получите пользователя по полю email, сверите пароли и если они совпадают то “залогините” пользователя опираясь на его role.
 
 Также должен быть реализован выход пользователя.
+
 Не залогиненный пользователь.
+
 Не залогиненый пользователь может лишь просматривать посты, он не может ни создавать новые, ни “хлопать” за существующие.
+
 Читатель (role: reader).
+
 Читатель не может создавать и редактировать существующие посты, но может хлопать за существующие, количество хлопков по типу Medium, не ограничено.
+
 Писатель (role: writer).
+
 Писатель может создавать, редактировать и удалять свои посты, но не может “хлопать”.
 UI/UX.
 Использование buefy обязательно. Кастомизировать его не нужно.
@@ -68,7 +78,6 @@ UI/UX.
 Отдельный экран для создания / редактирования поста.
 
 Значение кнопки хлопков должно изменяться без перезагрузки страницы.
-```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

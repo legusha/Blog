@@ -1,14 +1,14 @@
 const isDev = process.env.NODE_ENV === 'development'
 
+// getTime must be call getTime()()
+const getTime = () => new Date().getTime.bind(new Date())
+
 function logger (display) {
   if (display) {
     return (description, log) => log.call(null, description)
   }
   return () => {}
 }
-
-// getTime must be call getTime()()
-const getTime = () => new Date().getTime.bind(new Date())
 
 const log = {
   run: logger(isDev),
