@@ -9,7 +9,7 @@ const config = {
 // Endpoints must be in the type of functions
 const endPoints = {
   user: email => `users?login=${email}`,
-  posts: (page = 1, limit = 10) => `posts?_page=${page}&_limit=${limit}`,
+  posts: (page, limit) => `posts?_page=${page}&_limit=${limit}`,
   postId: id => `posts/${id}`
 }
 
