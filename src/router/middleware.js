@@ -1,7 +1,7 @@
 export default {
   postEdit (store, to, from, next) {
-    const defaultPostPage = '1'
-    const defaultPage = { name: 'Posts', params: { page: defaultPostPage } }
+    const defaultCountPage = '1'
+    const defaultPostPage = { name: 'Posts', params: { page: defaultCountPage } }
     const isHasId = to.params?.id
 
     if (isHasId) {
@@ -14,10 +14,10 @@ export default {
         next()
         return
       }
-      next(defaultPage)
+      next(defaultPostPage)
       return
     }
-    next(defaultPage)
+    next(defaultPostPage)
   },
   postCreate (store, to, from, next) {
     store.commit('setCurrentPost')
