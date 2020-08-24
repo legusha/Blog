@@ -122,13 +122,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['auth', 'user', 'posts', 'visiblePosts', 'currentPagePost']),
+    ...mapGetters(['auth', 'user', 'posts', 'visiblePosts', 'currentPagePost', 'countPosts']),
     permission () {
       return this.user.permission.current.posts
     },
     pagination () {
       return {
-        total: this.posts.length + 1,
+        total: this.countPosts,
         currentPage: this.currentPagePost,
         perPage: this.paginationMaxItems,
         order: 'is-centered',
@@ -160,7 +160,7 @@ export default {
 
       await this.makeRequestPost({
         option: requestOption,
-        data: requestData
+        dataRequest: requestData
       })
     },
     requestEditPost (post) {

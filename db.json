@@ -78,19 +78,10 @@
       "userId": 0
     },
     {
-      "id": 11,
-      "title": "6 by user DEV",
-      "description": "6",
-      "claps": 0,
-      "createdAt": 1598307412624,
-      "updateAt": 1598307412624,
-      "userId": 0
-    },
-    {
       "id": 12,
       "title": "7 by user DEV",
       "description": "7",
-      "claps": 0,
+      "claps": 1,
       "createdAt": 1598307412624,
       "updateAt": 1598307412624,
       "userId": 0

@@ -80,7 +80,7 @@ export default {
 
       this.setCurrentPost({ ...data, id })
       await this.makeRequestPost({
-        data,
+        dataRequest: data,
         option: optionRequest,
         mutation: optionMutation
       })
@@ -101,7 +101,7 @@ export default {
       }
 
       await this.makeRequestPost({
-        data,
+        dataRequest: data,
         option: optionRequest,
         mutation: optionMutation
       })

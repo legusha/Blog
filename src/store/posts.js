@@ -14,6 +14,7 @@ const structPost = {
 export default {
   state: {
     posts: [],
+    countPosts: 0,
     visiblePosts: [],
     currentPost: structPost,
     request: {
@@ -24,6 +25,7 @@ export default {
   getters: {
     posts: state => state.posts,
     visiblePosts: state => state.visiblePosts,
+    countPosts: state => state.countPosts,
     currentPost: state => state.currentPost,
     currentPagePost: state => state.currentPage,
     timePost: () => ({
@@ -48,7 +50,8 @@ export default {
       state.visiblePosts.splice(indexVisiblePost, 1)
       state.currentPost = structPost
     },
-    writePosts (state, { data }) {
+    writePosts (state, { data, headers }) {
+      const radix = 10
       const pushUniquePosts = postData => {
         const isUniquePost = post => post.id === postData.id
         const isHasPost = state.posts.some(isUniquePost)
@@ -57,6 +60,7 @@ export default {
         }
       }
 
+      state.countPosts = parseInt(headers['x-total-count'], radix)
       data.forEach(pushUniquePosts)
       state.visiblePosts = data
     },
@@ -68,20 +72,23 @@ export default {
     }
   },
   actions: {
-    async makeRequestPost ({ state, commit }, { option, data = null, mutation = null }) {
+    async makeRequestPost ({ state, commit }, { option, dataRequest = null, mutation = null }) {
       const { method, pointName, args } = option
 
       try {
         const hasMethod = state.request.methods.includes(method)
         if (!hasMethod) return
 
-        const dataRequest = await api(method, { pointName, args }, data)
-        console.log(dataRequest)
+        const { data, headers } = await api(method, { pointName, args }, dataRequest)
 
         if (mutation !== null) {
-          commit(mutation.name, { data: dataRequest.data, ...mutation.args })
+          commit(mutation.name, {
+            data,
+            ...mutation.args,
+            headers
+          })
         }
-        return dataRequest.data
+        return data
       } catch (e) {
         console.error(e)
         return null
