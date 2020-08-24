@@ -18,19 +18,19 @@
       "id": 3,
       "title": "New post by user vlad@mail.com",
       "description": "new post by user vlad@mail.com",
-      "claps": 3,
+      "claps": 4,
       "createdAt": 1597935542881,
       "updateAt": 1597935542881,
       "userId": 1
     },
     {
-      "title": "New post by Dev user",
-      "description": "new post by user dev user",
+      "id": 4,
+      "title": "New post by Dev user 22",
+      "description": "new post by user dev user 222",
       "claps": 3,
-      "userId": 0,
       "createdAt": 1597935542881,
       "updateAt": 1597935542881,
-      "id": 4
+      "userId": 0
     },
     {
       "title": "new post 2 by user vlad@mail.com",
@@ -107,20 +107,38 @@
     {
       "title": "11",
       "description": "11",
-      "claps": 0,
+      "claps": 2,
       "userId": 0,
       "createdAt": 1598211544495,
       "updateAt": 1598211544495,
       "id": 13
     },
     {
-      "title": "new posts 123",
-      "description": "new posts 123",
+      "id": 14,
+      "title": "new posts 123333",
+      "description": "new posts 123333",
       "claps": 0,
-      "userId": 0,
       "createdAt": 1598247549098,
       "updateAt": 1598247549098,
-      "id": 14
+      "userId": 0
+    },
+    {
+      "id": 15,
+      "title": "12333333344",
+      "description": "12333333333444",
+      "claps": 0,
+      "createdAt": 1598300277832,
+      "updateAt": 1598300277832,
+      "userId": 0
+    },
+    {
+      "title": "my new post",
+      "description": "my new post",
+      "claps": 0,
+      "userId": 0,
+      "createdAt": 1598300992028,
+      "updateAt": 1598300992028,
+      "id": 16
     }
   ]
 }

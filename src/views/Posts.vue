@@ -2,7 +2,7 @@
   <div class="container is-center">
     <section class="is-center">
       <div
-        v-for="(post, index) in posts"
+        v-for="(post, index) in visiblePosts"
         :key="index"
         class="post-box box column is-6 m-auto mb-6">
         <article class="media">
@@ -51,8 +51,6 @@
         :current="pagination.currentPage"
         :total="pagination.total"
         :per-page="pagination.perPage"
-        :range-before="pagination.rangeBefore"
-        :range-after="pagination.rangeAfter"
         :order="pagination.order"
         :icon-pack="pagination.iconPack"
         @change="paginationAction"
@@ -104,17 +102,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['auth', 'user', 'posts']),
+    ...mapGetters(['auth', 'user', 'posts', 'visiblePosts']),
     permission () {
       return this.user.permission.current.posts
     },
     pagination () {
       return {
-        total: this.posts.length,
+        total: this.posts.length + 1,
         currentPage: this.paginationCurrentPage,
         perPage: this.paginationMaxItems,
-        rangeBefore: 0,
-        rangeAfter: 3,
         order: 'is-centered',
         iconPack: 'fas'
       }
@@ -131,6 +127,9 @@ export default {
 
       await this.makeRequestPost(request)
     },
+    async updateVisiblePosts () {
+      await this.getPosts()
+    },
     async clapPost (post) {
       post.claps = ++post.claps
 
@@ -143,25 +142,30 @@ export default {
       const id = post.id
       this.$router.push({ name: 'Post-edit', params: { id } })
     },
-    async deletePost (post, index) {
+    async deletePost (post, indexVisiblePost) {
       const id = post.id
       const requestOption = this.request.deletePost.option
       const requestMutation = this.request.deletePost.mutation
+      const index = this.posts.findIndex(statePost => statePost.id === post.id)
 
       requestOption.args = [id]
-      requestMutation.args = { index }
+      requestMutation.args = { index, indexVisiblePost }
 
       await this.makeRequestPost({ option: requestOption, mutation: requestMutation })
     },
-    paginationAction (currentPage) {
-      this.paginationCurrentPage = currentPage
-      console.log(currentPage)
+    writeCurrentPage (page = 1) {
+      this.paginationCurrentPage = page
+      return this
+    },
+    async paginationAction (currentPage) {
+      await this.writeCurrentPage(currentPage).updateVisiblePosts()
+      await this.$router.push({ name: 'Posts', params: { page: currentPage } })
     }
   },
-  async mounted () {
-    if (this.posts.length === 0) {
-      await this.getPosts()
-    }
+  mounted () {
+    const radix = 10
+    const currentPage = parseInt(this.$route.params.page, radix)
+    this.writeCurrentPage(currentPage).updateVisiblePosts()
   }
 }
 </script>

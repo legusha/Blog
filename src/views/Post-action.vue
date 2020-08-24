@@ -81,7 +81,7 @@ export default {
         option: optionRequest,
         mutation: optionMutation
       })
-      await this.$router.push({ name: 'Posts' })
+      await this.$router.push({ name: 'Posts', params: { page: '1' } })
     },
     async formActionCreate () {
       const currentPost = this.currentPost
@@ -102,7 +102,7 @@ export default {
         option: optionRequest,
         mutation: optionMutation
       })
-      await this.$router.push({ name: 'Posts' })
+      await this.$router.push({ name: 'Posts', params: { page: '1' } })
     },
     formCurrentAssign () {
       if (this.$route.name === 'Post-edit') {
