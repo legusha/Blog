@@ -21,7 +21,7 @@
               </div>
               <div v-if="auth" class="column is-8 has-text-right">
                 <div v-if="permission.like" class="is-inline-block">
-                  <a @click="clapPost(post, index)" class="button is-link is-light is-info is-medium" aria-label="like">
+                  <a @click="requestClapPost(post, index)" class="button is-link is-light is-info is-medium" aria-label="like">
                     <span class="icon is-small">
                       <i class="fas fa-hands-wash" aria-hidden="true"></i>
                     </span>
@@ -29,13 +29,13 @@
                   </a>
                 </div>
                 <div v-if="user.id === post.userId && permission.edit && permission.destroy" class="is-inline-block">
-                  <a @click="editPost(post)" class="button is-link is-light is-info is-inline-block is-medium" aria-label="like">
+                  <a @click="requestEditPost(post)" class="button is-link is-light is-info is-inline-block is-medium" aria-label="like">
                     <span class="icon is-small">
                       <i class="far fa-edit" aria-hidden="true"></i>
                     </span>
                     <span>Изменить</span>
                   </a>
-                  <a @click="deletePost(post, index)" class="button is-link is-light is-info is-inline-block ml-3 is-medium" aria-label="like">
+                  <a @click="requestDeletePost(post, index)" class="button is-link is-light is-info is-inline-block ml-3 is-medium" aria-label="like">
                     <span class="icon is-small">
                       <i class="far fa-trash-alt" aria-hidden="true"></i>
                     </span>
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'Posts',
   data () {
@@ -82,6 +82,10 @@ export default {
             method: 'put',
             pointName: 'postId',
             args: []
+          },
+          mutation: {
+            name: 'clapPost',
+            args: {}
           },
           data: {}
         },
@@ -117,6 +121,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['clapPost']),
     ...mapActions(['makeRequestPost']),
     async getPosts () {
       const request = this.request.getPost
@@ -130,19 +135,23 @@ export default {
     async updateVisiblePosts () {
       await this.getPosts()
     },
-    async clapPost (post) {
-      post.claps = ++post.claps
+    async requestClapPost (post) {
+      this.clapPost({ post })
+      const requestData = this.request.setPost.data = post
+      const requestOption = this.request.setPost.option
 
-      this.request.setPost.data = post
-      this.request.setPost.option.args = [post.id]
+      requestOption.args = [post.id]
 
-      await this.makeRequestPost(this.request.setPost)
+      await this.makeRequestPost({
+        option: requestOption,
+        data: requestData
+      })
     },
-    editPost (post) {
+    requestEditPost (post) {
       const id = post.id
       this.$router.push({ name: 'Post-edit', params: { id } })
     },
-    async deletePost (post, indexVisiblePost) {
+    async requestDeletePost (post, indexVisiblePost) {
       const id = post.id
       const requestOption = this.request.deletePost.option
       const requestMutation = this.request.deletePost.mutation
@@ -151,7 +160,10 @@ export default {
       requestOption.args = [id]
       requestMutation.args = { index, indexVisiblePost }
 
-      await this.makeRequestPost({ option: requestOption, mutation: requestMutation })
+      await this.makeRequestPost({
+        option: requestOption,
+        mutation: requestMutation
+      })
     },
     writeCurrentPage (page = 1) {
       this.paginationCurrentPage = page

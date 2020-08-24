@@ -39,7 +39,7 @@ export default {
     }
   },
   actions: {
-    async getUser ({ state, commit }, login) {
+    async makeRequestUser ({ state, commit }, login) {
       try {
         const pointName = state.pointName
         const data = await api('get', { pointName, args: [login] })

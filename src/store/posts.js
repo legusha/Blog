@@ -30,6 +30,9 @@ export default {
     })
   },
   mutations: {
+    clapPost (state, { post }) {
+      post.claps = ++post.claps
+    },
     createPost (state, { data }) {
       state.posts.unshift(data)
       state.currentPost = structPost
