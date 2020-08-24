@@ -15,9 +15,9 @@
                 {{post.description}}
               </p>
             </div>
-            <div class="columns">
+            <div class="columns align-center">
               <div class="column is-4">
-                <small>31m</small>
+                <small class="is-bold">{{post.updateAt | differenceTime}}</small>
               </div>
               <div v-if="auth" class="column is-8 has-text-right">
                 <div v-if="permission.like" class="is-inline-block">
@@ -55,6 +55,12 @@
         :icon-pack="pagination.iconPack"
         @change="paginationAction"
       >
+        <b-pagination-button
+          slot-scope="props"
+          :page="props.page"
+          class="is-info"
+        >
+        </b-pagination-button>
       </b-pagination>
     </section>
   </div>
@@ -64,6 +70,18 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'Posts',
+  filters: {
+    differenceTime (value) {
+      const diffInMilliseconds = new Date().getTime() - value
+      const days = 1000 * 60 * 60 * 24
+      const result = Math.ceil(diffInMilliseconds / (days))
+      console.log(result)
+      if (result === 1) {
+        return 'Today'
+      }
+      return `${result} days ago`
+    }
+  },
   data () {
     return {
       request: {
@@ -185,5 +203,13 @@ export default {
 <style scoped>
   .post-box {
     margin: auto;
+  }
+  .align-center {
+    align-items: center;
+  }
+  .pagination-link.is-current {
+    background-color: #0d68ce;;
+    border-color: #0d68ce;
+    color: white;
   }
 </style>
