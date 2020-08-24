@@ -29,8 +29,8 @@ export default {
     currentPost: state => state.currentPost,
     currentPagePost: state => state.currentPage,
     timePost: () => ({
-      createdAt: getTime()(),
-      updateAt: getTime()()
+      createdAt: getTime,
+      updateAt: getTime
     })
   },
   mutations: {

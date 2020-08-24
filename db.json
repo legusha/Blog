@@ -26,10 +26,10 @@
     {
       "title": "new post 2 by user vlad@mail.com",
       "description": "new post 2 by user vlad@mail.com",
-      "claps": 7,
+      "claps": 8,
       "userId": 1,
       "createdAt": 1597936533188,
-      "updateAt": 1597936533188,
+      "updateAt": 1598311754713,
       "id": 5
     },
     {
@@ -105,13 +105,13 @@
       "id": 14
     },
     {
+      "id": 15,
       "title": "10 by user DEV",
       "description": "10 by user DEV",
       "claps": 0,
-      "userId": 0,
       "createdAt": 1598308333094,
-      "updateAt": 1598308333094,
-      "id": 15
+      "updateAt": 1598311895002,
+      "userId": 0
     },
     {
       "title": "new post by user vlad@mail.com",

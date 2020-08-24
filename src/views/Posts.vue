@@ -100,10 +100,6 @@ export default {
             pointName: 'postId',
             args: []
           },
-          mutation: {
-            name: 'clapPost',
-            args: {}
-          },
           data: {}
         },
         deletePost: {
@@ -122,7 +118,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['auth', 'user', 'posts', 'visiblePosts', 'currentPagePost', 'countPosts']),
+    ...mapGetters(['auth', 'user', 'posts', 'visiblePosts', 'currentPagePost', 'countPosts', 'timePost']),
     permission () {
       return this.user.permission.current.posts
     },
@@ -152,6 +148,8 @@ export default {
       await this.getPosts()
     },
     async requestClapPost (post) {
+      post.updateAt = this.timePost.updateAt()()
+
       this.clapPost({ post })
       const requestData = this.request.setPost.data = post
       const requestOption = this.request.setPost.option

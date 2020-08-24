@@ -77,6 +77,7 @@ export default {
 
       optionRequest.args = [id]
       optionMutation.args = { index: this.index }
+      data.updateAt = this.timePost.updateAt()()
 
       this.setCurrentPost({ ...data, id })
       await this.makeRequestPost({
@@ -91,13 +92,17 @@ export default {
       const optionRequest = this.formCurrent.request
       const optionMutation = optionRequest.mutation
       const id = this.user.id
+      const time = {
+        createdAt: this.timePost.createdAt()(),
+        updateAt: this.timePost.updateAt()()
+      }
 
       const data = {
         title: currentPost.title,
         description: currentPost.description,
         claps: 0,
         userId: id,
-        ...this.timePost
+        ...time
       }
 
       await this.makeRequestPost({
