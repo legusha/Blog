@@ -18,7 +18,10 @@ export default {
     Header
   },
   computed: {
-    ...mapGetters(['auth', 'user'])
+    ...mapGetters([
+      'auth',
+      'user'
+    ])
   },
   methods: {
     goToPostCreate () {

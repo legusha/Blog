@@ -53,7 +53,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['posts', 'currentPost', 'user', 'timePost', 'currentPagePost']),
+    ...mapGetters([
+      'currentPost',
+      'currentPagePost',
+      'posts',
+      'timePost',
+      'user'
+    ]),
     id () {
       const radix = 10
       const id = this.$route.params.id
