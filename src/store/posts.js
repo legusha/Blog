@@ -31,7 +31,7 @@ export default {
       createdAt: getTime,
       updateAt: getTime
     }),
-    visiblePosts: state => state.visiblePosts,
+    visiblePosts: state => state.visiblePosts
   },
   mutations: {
     clapPost (state, { post }) {
