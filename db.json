@@ -26,28 +26,28 @@
     {
       "title": "new post 2 by user vlad@mail.com",
       "description": "new post 2 by user vlad@mail.com",
-      "claps": 8,
+      "claps": 9,
       "userId": 1,
       "createdAt": 1597936533188,
-      "updateAt": 1598311754713,
+      "updateAt": 1598388541845,
       "id": 5
     },
     {
       "id": 6,
       "title": "1 by user DEV",
       "description": "",
-      "claps": 1,
+      "claps": 13,
       "createdAt": 1598305572683,
-      "updateAt": 1598305572683,
+      "updateAt": 1598388549446,
       "userId": 0
     },
     {
       "id": 7,
       "title": "2 by user DEV",
       "description": "2",
-      "claps": 1,
+      "claps": 2,
       "createdAt": 1598305572683,
-      "updateAt": 1598305572683,
+      "updateAt": 1598388545012,
       "userId": 0
     },
     {
@@ -121,6 +121,15 @@
       "createdAt": 1598308418202,
       "updateAt": 1598308418202,
       "id": 16
+    },
+    {
+      "id": 17,
+      "title": "Create by vlad@mail.com",
+      "description": "post 1",
+      "claps": 1,
+      "createdAt": 1598388275431,
+      "updateAt": 1598388695213,
+      "userId": 1
     }
   ]
 }

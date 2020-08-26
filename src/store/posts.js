@@ -13,25 +13,25 @@ const structPost = {
 
 export default {
   state: {
-    posts: [],
+    currentPage: 1,
     countPosts: 0,
-    visiblePosts: [],
     currentPost: structPost,
+    posts: [],
     request: {
       methods: ['get', 'post', 'put', 'delete']
     },
-    currentPage: 1
+    visiblePosts: []
   },
   getters: {
-    posts: state => state.posts,
-    visiblePosts: state => state.visiblePosts,
     countPosts: state => state.countPosts,
     currentPost: state => state.currentPost,
     currentPagePost: state => state.currentPage,
+    posts: state => state.posts,
     timePost: () => ({
       createdAt: getTime,
       updateAt: getTime
-    })
+    }),
+    visiblePosts: state => state.visiblePosts,
   },
   mutations: {
     clapPost (state, { post }) {

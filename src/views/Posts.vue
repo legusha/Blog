@@ -118,7 +118,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['auth', 'user', 'posts', 'visiblePosts', 'currentPagePost', 'countPosts', 'timePost']),
+    ...mapGetters([
+      'auth',
+      'user',
+      'posts',
+      'visiblePosts',
+      'currentPagePost',
+      'countPosts',
+      'timePost'
+    ]),
     permission () {
       return this.user.permission.current.posts
     },
