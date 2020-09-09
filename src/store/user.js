@@ -1,5 +1,5 @@
-import PermissionFactory from '@/permission'
-import api from '@/api'
+import PermissionFactory from '@/services/permission'
+import api from '@/services/api'
 
 const assess = process.env.VUE_APP_ASSESS
 

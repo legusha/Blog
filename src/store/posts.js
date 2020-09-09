@@ -1,4 +1,4 @@
-import api from '@/api'
+import api from '@/services/api'
 import { getTime } from '@/utils'
 
 const structPost = {
