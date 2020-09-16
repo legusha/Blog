@@ -32,7 +32,6 @@ export default {
   name: 'Auth',
   data () {
     return {
-      hasError: true,
       fields: {
         login: {
           errors: [
